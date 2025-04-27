@@ -14,6 +14,7 @@ input[type="text"]:focus{
 
 button {
   padding: 5px 10px;
+  margin: 5px;
   border-radius: 15px;
   border: none;
   cursor: pointer;
@@ -74,4 +75,17 @@ button.play:hover {
   height: auto;
   display: block;
   margin-top: 5px;
+}
+#kata-container{
+  img{
+    height: 300px;
+  }
+  p{
+    margin: 5px;
+  }
+  margin: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: baseline;
 }
