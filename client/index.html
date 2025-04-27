@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="text" id="nama" placeholder="Masukkan nama" required>
+    <div id="extra-fields" style="display: none;">
+      <select id="jenis_sakit">
+        <option value="">--Pilih Sakit--</option>
+        <option value="stroke">Stroke</option>
+        <option value="speech delay">Speech Delay</option>
+      </select>
+      <input type="number" id="usia" placeholder="Usia">
+      <select id="jenis_kelamin">
+        <option value="">--Jenis Kelamin--</option>
+        <option value="pria">Pria</option>
+        <option value="wanita">Wanita</option>
+      </select>
+      <select id="bisa_membaca">
+        <option value="">--Sudah Bisa Membaca?--</option>
+        <option value="true">Bisa</option>
+        <option value="false">Belum Bisa</option>
+      </select>
+    </div>
+    <button id="loginBtn">Login</button>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

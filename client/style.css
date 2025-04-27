@@ -1,0 +1,77 @@
+body {
+  font-family: Arial, sans-serif;
+  margin-top: 50px;
+}
+
+input{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+input[type="text"]:focus{
+    background-color: lightgoldenrodyellow;
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+.rekam {
+  background-color: lightgreen;
+}
+.rekam.active {
+  background-color: coral;
+  animation: blink 1s infinite;
+  color: aliceblue;
+}
+.rekam.done {
+  background-color: red;
+  color: aliceblue;
+}
+
+.stop {
+    background-color: lightblue;
+}
+.stop.active {
+  background-color: red;
+  color: aliceblue;
+}
+.kirim{
+    /* margin-top: 10px; */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color:rgb(255, 170, 58);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+button.done {
+  background-color: #4CAF50;
+  color: white;
+  cursor: not-allowed;
+}
+
+button.done:hover {
+  background-color: #45a049;
+}
+
+button.play {
+  background-color: #4CAF50;
+  color: white;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+button.play:hover {
+  background-color: #45a049;
+}
+.kata-gambar {
+  max-width: 100px; /* Atur ukuran gambar agar tidak terlalu besar */
+  height: auto;
+  display: block;
+  margin-top: 5px;
+}
