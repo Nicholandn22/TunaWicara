@@ -133,27 +133,6 @@ const container = document.getElementById("kata-container");
 const rekamanList = []; // Menyimpan semua rekaman sementara di browser
 let gambarInd = 0; //Index link gambar
 
-kataList.forEach((kata) => {
-  const div = document.createElement("div");
-  if (kata.trim().split(/\s+/).length === 1) { //Cek split kata
-    div.innerHTML = `
-    <p class="kata">${kata}</p>
-    <img src="${linkGambar[gambarInd]}" alt="${kata}">
-    <br>
-    <button class="rekam" onclick="mulaiRekam('${kata}')">Rekam</button>
-    <button class="stop" onclick="stopRekam()">Stop</button>
-    `;
-    gambarInd++;
-  } else {
-    div.innerHTML = `
-    <p class="kata">${kata}</p>
-    <button class="rekam" onclick="mulaiRekam('${kata}')">Rekam</button>
-    <button class="stop" onclick="stopRekam()">Stop</button>
-    `;
-  }
-  container.appendChild(div);
-});
-
 let mediaRecorder;
 let audioChunks = [];
 let currentKata = "";
@@ -170,7 +149,7 @@ async function mulaiRekam(kata) {
   buttons.forEach((div) => {
     const p = div.querySelector("p.kata");
     const img = div.querySelector("img");
-    
+
     if (p && p.textContent === kata) {
       rekamActive = div.querySelector("button.rekam");
       stopActive = div.querySelector("button.stop");
@@ -292,8 +271,9 @@ function renderKataList() {
 
     // Periksa status rekaman di localStorage
     const isRecorded = localStorage.getItem(kata) === "recorded";
-    
-    if (kata.trim().split(/\s+/).length === 1) { //Cek split kata
+
+    if (kata.trim().split(/\s+/).length === 1) {
+      //Cek split kata
       const imgSrc = linkGambar[gambarInd % linkGambar.length]; //cek panjang list
       div.innerHTML = `
         <img src="${imgSrc}" alt="${kata}">
@@ -308,14 +288,14 @@ function renderKataList() {
         <button class="stop" onclick="stopRekam()">Stop</button>
       `;
       gambarInd++;
-    }else{
+    } else {
       div.innerHTML = `
       <p class="kata">${kata}</p>
       <button class="rekam ${
         isRecorded ? "done" : ""
       }" onclick="mulaiRekam('${kata}')">${
-      isRecorded ? "Rekaman Selesai" : "Rekam"
-    }</button>
+        isRecorded ? "Rekaman Selesai" : "Rekam"
+      }</button>
       <button class="stop" onclick="stopRekam()">Stop</button>
     `;
     }
