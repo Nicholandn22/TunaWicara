@@ -4,6 +4,7 @@ const mysql = require("mysql2");
 const path = require("path");
 const multer = require("multer"); // Import multer
 const app = express();
+const fs = require("fs"); // Tambahkan ini
 const port = 3000;
 const cors = require("cors");
 app.use(cors());
@@ -45,7 +46,7 @@ app.post("/check-user", (req, res) => {
   if (!nama) return res.status(400).json({ error: "Nama harus diisi" });
 
   db.query(
-    "SELECT * FROM user_profiles WHERE nama_lengkap = ?",
+    "SELECT * FROM user_profiles WHERE nama_lengkap = ? LIMIT 1",
     [nama],
     (err, results) => {
       if (err) {
@@ -101,51 +102,74 @@ app.post("/register-user", (req, res) => {
   );
 });
 
+// Tambahkan middleware untuk parsing form-data
+app.use(express.urlencoded({ extended: true })); // Penting!
+app.use(express.json());
 
+// Pastikan folder uploads ada
+const uploadDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
-// Setup storage untuk Multer (penyimpanan file berdasarkan user_id)
+// Config Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const userId = req.body.user_id;
-    const dir = path.join(__dirname, 'uploads', userId);
-
-    // Buat folder jika belum ada
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    cb(null, dir);
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    const filename = `${file.originalname}`;
-    cb(null, filename);  // Simpan dengan nama file asli
-  }
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
 });
 
-const upload = multer({ storage: storage });
-// Endpoint upload
-app.post("/upload", upload.single("audio"), (req, res) => {
-  const userId = req.body.user_id;
-  const filename = req.file.filename;
-
-  if (!userId || !filename) {
-    return res.status(400).json({ error: "Data tidak lengkap." });
-  }
-
-  const sql = "INSERT INTO user_recordings (user_id, filename) VALUES (?, ?)";
-  db.query(sql, [userId, filename], (err, result) => {
-    if (err) {
-      console.error("Gagal simpan ke database:", err);
-      return res.status(500).json({ error: "Gagal simpan ke database." });
-    }
-    res.json({ success: true, id: result.insertId });
+const upload = multer({ storage });
+// Endpoint Upload File
+// Endpoint Upload dengan logging
+app.post("/upload", upload.single("audio"), async (req, res) => {
+  console.log("Received upload:", {
+    file: req.file ? req.file.originalname : "No file",
+    body: req.body,
   });
+
+  try {
+    // Validasi input
+    if (!req.file) throw new Error("File audio tidak ditemukan");
+    if (!req.body.user_id) throw new Error("user_id harus diisi");
+
+    // Simpan ke database
+    const [result] = await db
+      .promise()
+      .execute(
+        "INSERT INTO user_recordings (user_id, filename) VALUES (?, ?)",
+        [req.body.user_id, req.body.filename]
+      );
+
+    console.log("File saved to DB:", result);
+    res.json({ success: true, fileId: result.insertId });
+  } catch (error) {
+    console.error("Upload error:", error);
+
+    // Hapus file jika gagal
+    if (req.file?.path) {
+      fs.unlinkSync(req.file.path);
+    }
+
+    res.status(500).json({
+      error: "Upload failed",
+      detail: error.message,
+    });
+  }
 });
+
+// Buat folder uploads jika belum ada
+if (!fs.existsSync(path.join(__dirname, "uploads"))) {
+  fs.mkdirSync(path.join(__dirname, "uploads"));
+}
 
 // Ini penting! Supaya folder client bisa diakses
 app.use(express.static(path.join(__dirname, "../client")));
 
 // Jalankan server
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log(`✅ Server jalan di http://localhost:${port}`);
 });

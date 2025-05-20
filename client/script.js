@@ -285,26 +285,33 @@ async function kirimSemua() {
   }
 
   for (const rekaman of rekamanList) {
-    const formData = new FormData();
-    formData.append("audio", rekaman.blob, rekaman.filename); // Menambahkan file rekaman
-    formData.append("user_id", userId); // Menambahkan ID user
-    formData.append("filename", rekaman.filename); // Menambahkan nama file
-
     try {
+      const formData = new FormData();
+      formData.append("audio", rekaman.blob, rekaman.filename);
+      formData.append("user_id", userId);
+      formData.append("filename", rekaman.filename);
+
+      console.log("Uploading:", rekaman.filename); // Log filename
+
       const response = await fetch("http://localhost:3000/upload", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        console.error("Gagal mengirim:", rekaman.filename);
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Server error");
       }
+
+      const result = await response.json();
+      console.log("Upload success:", result);
     } catch (error) {
-      console.error("Error:", error);
+      console.error(`Gagal upload ${rekaman.filename}:`, error);
+      alert(`Gagal upload ${rekaman.filename}: ${error.message}`);
     }
   }
 
-  alert("Semua rekaman berhasil dikirim!");
+  alert("Proses upload selesai!");
 }
 
 let currentPage = 1;
