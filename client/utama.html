@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Rekam Suara Stroke</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- <img src="https://drive.googleom/drive/folders/1wNjD_PC3afj--3If3fQPvnyLvww31W1Y" alt="asdaas"> -->
-  <h1>Rekam Suara Dataset Stroke</h1>
+  <head>
+    <title>Rekam Suara Stroke</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <img src="https://drive.googleom/drive/folders/1wNjD_PC3afj--3If3fQPvnyLvww31W1Y" alt="asdaas"> -->
+    <h1>Rekam Suara Dataset Stroke</h1>
+    <p>Selamat datang, user ID: <span id="userId" data-id="1"></span>
+</p>
 
+    <div id="kata-container"></div>
+    <div id="pagination" style="margin-top: 20px"></div>
 
+    <button class="kirim" onclick="kirimSemua()">Kirim Semua Rekaman</button>
+    <button id="reset" onclick="resetRekaman()">Reset Rekaman</button>
 
-  <div id="kata-container"></div>
-  <div id="pagination" style="margin-top: 20px;"></div>
-
-  
-
-  <button class="kirim" onclick="kirimSemua()">Kirim Semua Rekaman</button>
-  <button id="reset" onclick="resetRekaman()">Reset Rekaman</button>
-
-
-  
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

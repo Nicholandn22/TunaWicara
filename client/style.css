@@ -89,3 +89,8 @@ button.play:hover {
   justify-content: space-around;
   align-items: baseline;
 }
+
+#kata-container p{
+  align-items: center;
+  margin: auto;
+}

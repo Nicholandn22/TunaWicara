@@ -78,64 +78,96 @@ const kataList = [
 ];
 
 const linkGambar = {
-  pisang : "https://i.pinimg.com/736x/ac/ea/bf/aceabf6b0d6d29e2987d114aa08b83a4.jpg",
-  piring : "https://i.pinimg.com/736x/ba/64/85/ba64857718cbb5bf1edf12541d844e7e.jpg",
-  payung : "https://i.pinimg.com/736x/fe/24/13/fe24135c4c28072e44b9a9f33b5eca5f.jpg",
-  pintu : "https://i.pinimg.com/736x/fd/3a/c4/fd3ac4c070bebbdf0e1f12195e61f8d3.jpg",
-  pulpen : "https://i.pinimg.com/736x/87/c3/aa/87c3aa9036c0230ea62b5c99dc2d0f8b.jpg",
-  bola : "https://i.pinimg.com/736x/0f/52/22/0f5222f3ce42a8ab2f6b2e9c843dcd25.jpg",
-  buku : "https://i.pinimg.com/736x/18/3e/24/183e24b12211121a82bfe80829d0c945.jpg",
-  baju : "https://i.pinimg.com/736x/93/3c/20/933c208a69cba502813f233df7feff2e.jpg",
-  bunga : "https://i.pinimg.com/736x/8e/1a/8a/8e1a8a83c8aed5229c4d310f1e040d96.jpg",
-  batu : "https://i.pinimg.com/736x/fd/90/34/fd9034cf8b35f5f8dc29be02bb1ef3d1.jpg",
-  makan : "https://i.pinimg.com/736x/53/21/b5/5321b584550f9ee92c07f0cfe55a3d13.jpg",
-  minum : "https://i.pinimg.com/736x/5c/b6/5f/5cb65f562f61f4bdd0f4c04bdfad4a75.jpg",
-  mama : "https://i.pinimg.com/736x/d8/34/37/d834370346daa45d8f3c3a29ad03ec41.jpg",
-  mobil : "https://i.pinimg.com/736x/e9/20/09/e920096c7daa75597165703f0a14d184.jpg",
-  mandi : "https://i.pinimg.com/736x/f5/37/55/f53755c5e34c299b3e671324e7b442b8.jpg",
-  sapu : "https://i.pinimg.com/736x/22/ee/65/22ee65e4ba3a50687743a55ab29cffa5.jpg",
-  susu : "https://i.pinimg.com/736x/e1/25/34/e12534bf2fdf875d479a1bc8dbcd1c10.jpg",
-  sendok : "https://i.pinimg.com/736x/0d/af/91/0daf914d2b216f5777050bf96eddd059.jpg",
-  sepatu : "https://i.pinimg.com/736x/fa/75/c8/fa75c86409e45f7fdba65d1ade098a20.jpg",
-  satu : "https://i.pinimg.com/736x/c9/ee/fe/c9eefec869ce92f197627cd0cb49224d.jpg",
-  topi : "https://i.pinimg.com/736x/c4/c4/e7/c4c4e7984eb54f6cbbe18d68a43d6518.jpg",
-  tikus : "https://i.pinimg.com/736x/10/d7/6f/10d76f1d44c7ce09def50a06923c6f1e.jpg",
-  tangan : "https://i.pinimg.com/736x/5c/8a/6d/5c8a6d1ffad8bd7586cd50c8830c8a9e.jpg",
-  tidur : "https://i.pinimg.com/736x/e8/4e/05/e84e05c7b35ad7056406679d01bb0cd5.jpg",
-  tomat : "https://i.pinimg.com/736x/4b/1a/58/4b1a5831900aa601fde4c7ddb48a271f.jpg",
-  kucing : "https://i.pinimg.com/736x/d9/d4/40/d9d4400a0ca0226226be4ffb0eef4a3d.jpg",
-  kue : "https://i.pinimg.com/736x/0e/7c/20/0e7c20097df16f2088eeda394dba01cf.jpg",
-  kursi : "https://i.pinimg.com/736x/8b/fd/f4/8bfdf401c9de7e0c66d15f1ff75dc884.jpg",
-  kopi : "https://i.pinimg.com/736x/c8/40/c8/c840c8721e5d5319e857207ab5a5642d.jpg",
-  kaca : "https://i.pinimg.com/736x/39/e0/9e/39e09e14749482fdb68e37e4c9caf736.jpg",
-  gajah : "https://i.pinimg.com/736x/2a/6c/4a/2a6c4a82d7ec8eec5b5e587729b6d6fa.jpg",
-  gula : "https://i.pinimg.com/736x/d7/2b/2d/d72b2dd759261a8de2e312926208c3a4.jpg",
-  gunting : "https://i.pinimg.com/736x/d9/51/ec/d951ec0806bbe2939d0e193070052631.jpg",
-  gigi : "https://i.pinimg.com/736x/0d/5c/62/0d5c625f59115f8f948a043608e8ccb6.jpg",
-  garpu : "https://i.pinimg.com/736x/c7/1b/bf/c71bbfa987bea617860c9140c6999f84.jpg",
-  dadu : "https://i.pinimg.com/736x/b2/2f/e3/b22fe30300da786dd29202a7436f8e06.jpg",
-  domba : "https://i.pinimg.com/736x/bf/99/a5/bf99a5b933ef1106c34afb5807ac0542.jpg",
-  dapur : "https://i.pinimg.com/736x/f7/81/15/f78115def0eec258e7083aa4322d27a7.jpg",
-  duduk : "https://i.pinimg.com/736x/71/d1/31/71d1310c4daee26e9ebb7b02c0ea3b40.jpg",
-  daun : "https://i.pinimg.com/736x/85/57/35/85573567c8c0e50ef564fd46a73f76da.jpg",
-  lampu : "https://i.pinimg.com/736x/92/97/e2/9297e2f7dfa8b0775ce34f157444d0e0.jpg",
-  laut : "https://i.pinimg.com/736x/58/8d/c3/588dc3f837b20b699bf69785553192b4.jpg",
-  lari : "https://i.pinimg.com/736x/59/8a/06/598a063d6158b975ed20e9efba6dffe2.jpg",
-  lonceng : "https://i.pinimg.com/736x/a8/f0/d3/a8f0d363d0f42fea29e62a7a9eecd8a4.jpg",
-  "laba-laba" : "https://i.pinimg.com/736x/58/0c/ad/580cad97d64225d91c9536a39b682bb9.jpg",
-  roti : "https://i.pinimg.com/736x/81/7f/7f/817f7fc995e3685cf230adcde101df9f.jpg",
-  rumah : "https://i.pinimg.com/736x/7a/4c/3d/7a4c3de7e67a587bd76019c92249e540.jpg",
-  roda : "https://i.pinimg.com/736x/66/14/5a/66145a33aeabefc112be7adaa89c46e5.jpg",
-  rambut : "https://i.pinimg.com/736x/47/6a/22/476a225c7991c8c698867809fc6768ec.jpg",
-  ranjang : "https://i.pinimg.com/736x/d3/bf/7f/d3bf7fbda6b50c00e345cb513c82a9e6.jpg",
-}
+  pisang:
+    "https://i.pinimg.com/736x/ac/ea/bf/aceabf6b0d6d29e2987d114aa08b83a4.jpg",
+  piring:
+    "https://i.pinimg.com/736x/ba/64/85/ba64857718cbb5bf1edf12541d844e7e.jpg",
+  payung:
+    "https://i.pinimg.com/736x/fe/24/13/fe24135c4c28072e44b9a9f33b5eca5f.jpg",
+  pintu:
+    "https://i.pinimg.com/736x/fd/3a/c4/fd3ac4c070bebbdf0e1f12195e61f8d3.jpg",
+  pulpen:
+    "https://i.pinimg.com/736x/87/c3/aa/87c3aa9036c0230ea62b5c99dc2d0f8b.jpg",
+  bola: "https://i.pinimg.com/736x/0f/52/22/0f5222f3ce42a8ab2f6b2e9c843dcd25.jpg",
+  buku: "https://i.pinimg.com/736x/18/3e/24/183e24b12211121a82bfe80829d0c945.jpg",
+  baju: "https://i.pinimg.com/736x/93/3c/20/933c208a69cba502813f233df7feff2e.jpg",
+  bunga:
+    "https://i.pinimg.com/736x/8e/1a/8a/8e1a8a83c8aed5229c4d310f1e040d96.jpg",
+  batu: "https://i.pinimg.com/736x/fd/90/34/fd9034cf8b35f5f8dc29be02bb1ef3d1.jpg",
+  makan:
+    "https://i.pinimg.com/736x/53/21/b5/5321b584550f9ee92c07f0cfe55a3d13.jpg",
+  minum:
+    "https://i.pinimg.com/736x/5c/b6/5f/5cb65f562f61f4bdd0f4c04bdfad4a75.jpg",
+  mama: "https://i.pinimg.com/736x/d8/34/37/d834370346daa45d8f3c3a29ad03ec41.jpg",
+  mobil:
+    "https://i.pinimg.com/736x/e9/20/09/e920096c7daa75597165703f0a14d184.jpg",
+  mandi:
+    "https://i.pinimg.com/736x/f5/37/55/f53755c5e34c299b3e671324e7b442b8.jpg",
+  sapu: "https://i.pinimg.com/736x/22/ee/65/22ee65e4ba3a50687743a55ab29cffa5.jpg",
+  susu: "https://i.pinimg.com/736x/e1/25/34/e12534bf2fdf875d479a1bc8dbcd1c10.jpg",
+  sendok:
+    "https://i.pinimg.com/736x/0d/af/91/0daf914d2b216f5777050bf96eddd059.jpg",
+  sepatu:
+    "https://i.pinimg.com/736x/fa/75/c8/fa75c86409e45f7fdba65d1ade098a20.jpg",
+  satu: "https://i.pinimg.com/736x/c9/ee/fe/c9eefec869ce92f197627cd0cb49224d.jpg",
+  topi: "https://i.pinimg.com/736x/c4/c4/e7/c4c4e7984eb54f6cbbe18d68a43d6518.jpg",
+  tikus:
+    "https://i.pinimg.com/736x/10/d7/6f/10d76f1d44c7ce09def50a06923c6f1e.jpg",
+  tangan:
+    "https://i.pinimg.com/736x/5c/8a/6d/5c8a6d1ffad8bd7586cd50c8830c8a9e.jpg",
+  tidur:
+    "https://i.pinimg.com/736x/e8/4e/05/e84e05c7b35ad7056406679d01bb0cd5.jpg",
+  tomat:
+    "https://i.pinimg.com/736x/4b/1a/58/4b1a5831900aa601fde4c7ddb48a271f.jpg",
+  kucing:
+    "https://i.pinimg.com/736x/d9/d4/40/d9d4400a0ca0226226be4ffb0eef4a3d.jpg",
+  kue: "https://i.pinimg.com/736x/0e/7c/20/0e7c20097df16f2088eeda394dba01cf.jpg",
+  kursi:
+    "https://i.pinimg.com/736x/8b/fd/f4/8bfdf401c9de7e0c66d15f1ff75dc884.jpg",
+  kopi: "https://i.pinimg.com/736x/c8/40/c8/c840c8721e5d5319e857207ab5a5642d.jpg",
+  kaca: "https://i.pinimg.com/736x/39/e0/9e/39e09e14749482fdb68e37e4c9caf736.jpg",
+  gajah:
+    "https://i.pinimg.com/736x/2a/6c/4a/2a6c4a82d7ec8eec5b5e587729b6d6fa.jpg",
+  gula: "https://i.pinimg.com/736x/d7/2b/2d/d72b2dd759261a8de2e312926208c3a4.jpg",
+  gunting:
+    "https://i.pinimg.com/736x/d9/51/ec/d951ec0806bbe2939d0e193070052631.jpg",
+  gigi: "https://i.pinimg.com/736x/0d/5c/62/0d5c625f59115f8f948a043608e8ccb6.jpg",
+  garpu:
+    "https://i.pinimg.com/736x/c7/1b/bf/c71bbfa987bea617860c9140c6999f84.jpg",
+  dadu: "https://i.pinimg.com/736x/b2/2f/e3/b22fe30300da786dd29202a7436f8e06.jpg",
+  domba:
+    "https://i.pinimg.com/736x/bf/99/a5/bf99a5b933ef1106c34afb5807ac0542.jpg",
+  dapur:
+    "https://i.pinimg.com/736x/f7/81/15/f78115def0eec258e7083aa4322d27a7.jpg",
+  duduk:
+    "https://i.pinimg.com/736x/71/d1/31/71d1310c4daee26e9ebb7b02c0ea3b40.jpg",
+  daun: "https://i.pinimg.com/736x/85/57/35/85573567c8c0e50ef564fd46a73f76da.jpg",
+  lampu:
+    "https://i.pinimg.com/736x/92/97/e2/9297e2f7dfa8b0775ce34f157444d0e0.jpg",
+  laut: "https://i.pinimg.com/736x/58/8d/c3/588dc3f837b20b699bf69785553192b4.jpg",
+  lari: "https://i.pinimg.com/736x/59/8a/06/598a063d6158b975ed20e9efba6dffe2.jpg",
+  lonceng:
+    "https://i.pinimg.com/736x/a8/f0/d3/a8f0d363d0f42fea29e62a7a9eecd8a4.jpg",
+  "laba-laba":
+    "https://i.pinimg.com/736x/58/0c/ad/580cad97d64225d91c9536a39b682bb9.jpg",
+  roti: "https://i.pinimg.com/736x/81/7f/7f/817f7fc995e3685cf230adcde101df9f.jpg",
+  rumah:
+    "https://i.pinimg.com/736x/7a/4c/3d/7a4c3de7e67a587bd76019c92249e540.jpg",
+  roda: "https://i.pinimg.com/736x/66/14/5a/66145a33aeabefc112be7adaa89c46e5.jpg",
+  rambut:
+    "https://i.pinimg.com/736x/47/6a/22/476a225c7991c8c698867809fc6768ec.jpg",
+  ranjang:
+    "https://i.pinimg.com/736x/d3/bf/7f/d3bf7fbda6b50c00e345cb513c82a9e6.jpg",
+};
 const container = document.getElementById("kata-container");
 const rekamanList = []; // Menyimpan semua rekaman sementara di browser
 let gambarInd = 0; //Index link gambar
+let userId = null; // Menyimpan userId dari server
 
 kataList.forEach((kata) => {
   const div = document.createElement("div");
-  if (kata.trim().split(/\s+/).length === 1) { //Cek split kata
+  if (kata.trim().split(/\s+/).length === 1) {
+    //Cek split kata
     div.innerHTML = `
     <p class="kata">${kata}</p>
     <img src="${linkGambar[gambarInd]}" alt="${kata}">
@@ -170,7 +202,7 @@ async function mulaiRekam(kata) {
   buttons.forEach((div) => {
     const p = div.querySelector("p.kata");
     const img = div.querySelector("img");
-    
+
     if (p && p.textContent === kata) {
       rekamActive = div.querySelector("button.rekam");
       stopActive = div.querySelector("button.stop");
@@ -213,11 +245,12 @@ async function mulaiRekam(kata) {
     const rekamanDiv = document.querySelector(
       `div[data-kata="${currentKata}"]`
     );
+
     if (rekamanDiv) {
       const existingPlayButton = rekamanDiv.querySelector(".play");
       if (!existingPlayButton) {
-        rekamanDiv.appendChild(playButton);
         playButton.classList.add("play");
+        rekamanDiv.appendChild(playButton);
       }
     }
 
@@ -240,38 +273,35 @@ function stopRekam() {
   mediaRecorder.stop();
 }
 
-// Kirim semua rekaman ke server
 async function kirimSemua() {
-  const nama = document.getElementById("nama").value;
-  const usia = document.getElementById("usia").value;
-  const sakit = document.getElementById("sakit").value;
-  const gender = document.querySelector('input[name="gender"]:checked')?.value;
-  const membaca = document.querySelector(
-    'input[name="membaca"]:checked'
-  )?.value;
+  if (!userId) {
+    alert("Masukkan ID User terlebih dahulu.");
+    return;
+  }
 
-  if (!nama || !usia || !gender || !membaca || !sakit) {
-    alert("Harap isi semua data sebelum mengirim.");
+  if (rekamanList.length === 0) {
+    alert("Belum ada rekaman yang direkam.");
     return;
   }
 
   for (const rekaman of rekamanList) {
     const formData = new FormData();
-    formData.append("audio", rekaman.blob, rekaman.filename);
-    formData.append("kata", rekaman.kata);
-    formData.append("nama", nama);
-    formData.append("usia", usia);
-    formData.append("gender", gender);
-    formData.append("membaca", membaca);
-    formData.append("sakit", sakit);
+    formData.append("audio", rekaman.blob, rekaman.filename); // Menambahkan file rekaman
+    formData.append("user_id", userId); // Menambahkan ID user
+    formData.append("filename", rekaman.filename); // Menambahkan nama file
 
-    await fetch(
-      `http://localhost:3000/upload?nama=${encodeURIComponent(nama)}`,
-      {
+    try {
+      const response = await fetch("http://localhost:3000/upload", {
         method: "POST",
         body: formData,
+      });
+
+      if (!response.ok) {
+        console.error("Gagal mengirim:", rekaman.filename);
       }
-    );
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 
   alert("Semua rekaman berhasil dikirim!");
@@ -292,8 +322,9 @@ function renderKataList() {
 
     // Periksa status rekaman di localStorage
     const isRecorded = localStorage.getItem(kata) === "recorded";
-    
-    if (kata.trim().split(/\s+/).length === 1) { //Cek split kata
+
+    if (kata.trim().split(/\s+/).length === 1) {
+      //Cek split kata
       // const imgSrc = linkGambar[gambarInd % linkGambar.length]; //cek panjang list
       const imgSrc = linkGambar[kata];
 
@@ -310,14 +341,14 @@ function renderKataList() {
         <button class="stop" onclick="stopRekam()">Stop</button>
       `;
       gambarInd++;
-    }else{
+    } else {
       div.innerHTML = `
       <p class="kata">${kata}</p>
       <button class="rekam ${
         isRecorded ? "done" : ""
       }" onclick="mulaiRekam('${kata}')">${
-      isRecorded ? "Rekaman Selesai" : "Rekam"
-    }</button>
+        isRecorded ? "Rekaman Selesai" : "Rekam"
+      }</button>
       <button class="stop" onclick="stopRekam()">Stop</button>
     `;
     }
@@ -398,64 +429,23 @@ function resetRekaman() {
   alert("Semua rekaman telah direset!");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const loginBtn = document.getElementById("loginBtn");
-  const namaInput = document.getElementById("nama");
-  const extraFields = document.getElementById("extra-fields");
-
-  loginBtn.addEventListener("click", async () => {
-    const nama = namaInput.value.trim();
-    if (!nama) {
-      alert("Masukkan nama terlebih dahulu.");
-      return;
-    }
-
-    // Cek apakah user sudah ada di database
-    const res = await fetch("/check-user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nama }),
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch("/get-user-id", {
+      method: "GET",
+      credentials: "include", // ⬅️ PENTING: agar cookie session dikirim
     });
 
-    const data = await res.json();
-    if (data.exists) {
-      // User ditemukan → masuk ke halaman utama
-      window.location.href = "index.html"; // atau index.php jika kamu pakai PHP
-    } else {
-      // User tidak ditemukan → tampilkan form tambahan
-      if (extraFields.style.display === "none") {
-        extraFields.style.display = "block";
-      } else {
-        // Kalau form tambahan sudah ditampilkan, lakukan register
-        const jenis_sakit = document.getElementById("jenis_sakit").value;
-        const usia = document.getElementById("usia").value;
-        const jenis_kelamin = document.getElementById("jenis_kelamin").value;
-        const bisa_membaca = document.getElementById("bisa_membaca").value;
-
-        if (!jenis_sakit || !usia || !jenis_kelamin || bisa_membaca === "") {
-          alert("Lengkapi semua data tambahan.");
-          return;
-        }
-
-        const registerRes = await fetch("/register-user", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            nama,
-            jenis_sakit,
-            usia: parseInt(usia),
-            jenis_kelamin,
-            bisa_membaca: bisa_membaca === "true",
-          }),
-        });
-
-        const registerData = await registerRes.json();
-        if (registerData.success) {
-          window.location.href = "index.html"; // atau index.php
-        } else {
-          alert("Gagal menyimpan data.");
-        }
-      }
+    if (!res.ok) {
+      throw new Error("Gagal ambil userId");
     }
-  });
+
+    const data = await res.json();
+    document.getElementById("userId").textContent = data.userId;
+    console.log("User ID:", data.userId);
+    userId = data.userId; // Simpan userId ke variabel global
+  } catch (err) {
+    console.error("Error:", err);
+    document.getElementById("userId").textContent = "Terjadi kesalahan";
+  }
 });
