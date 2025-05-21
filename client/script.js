@@ -193,10 +193,11 @@ let currentKata = "";
 let rekamActive = null;
 let stopActive = true;
 
-
 async function mulaiRekam(kata) {
+  audioChunks = [];
   currentKata = kata;
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
   mediaRecorder = new MediaRecorder(stream);
 
   // Cari tombol yang sedang ditekan
@@ -232,7 +233,6 @@ async function mulaiRekam(kata) {
       blob: blob,
       filename: `${kata}-${userId}-${timestamp}.wav`,
     });
-    audioChunks = [];
 
     // Simpan status rekaman di localStorage
     localStorage.setItem(currentKata, "recorded");
@@ -253,20 +253,22 @@ async function mulaiRekam(kata) {
 
     if (rekamanDiv) {
       const existingPlayButton = rekamanDiv.querySelector(".play");
-      if (!existingPlayButton) {
-        playButton.classList.add("play");
-        rekamanDiv.appendChild(playButton);
+      if (existingPlayButton) {
+        existingPlayButton.remove(); // 🔥 Hapus tombol lama agar bisa diganti
       }
+
+      playButton.classList.add("play");
+      rekamanDiv.appendChild(playButton);
     }
 
-    if (rekamActive) {
-      rekamActive.classList.remove("active");
-      rekamActive.classList.add("done");
-    }
-    if (stopActive) {
-      stopActive.classList.remove("active");
-      stopActive.disabled = true;
-    }
+    // if (rekamActive) {
+    //   // rekamActive.classList.remove("active");
+    //   // rekamActive.classList.add("done");
+    // }
+    // if (stopActive) {
+    //   stopActive.classList.remove("active");
+    //   stopActive.disabled = true;
+    // }
 
     // alert(`Rekaman untuk kata "${currentKata}" disimpan sementara`); //karena mengganggu jdi ak comand dlu
   };
@@ -276,6 +278,11 @@ async function mulaiRekam(kata) {
 
 function stopRekam() {
   mediaRecorder.stop();
+  rekamActive.disabled = false;
+  stopActive.disabled = true;
+
+  rekamActive.classList.remove("active");
+  stopActive.classList.remove("active");
 }
 
 async function kirimSemua() {
@@ -321,6 +328,13 @@ async function kirimSemua() {
     }
   }
 
+  // Hapus semua rekaman dari rekamanList
+  rekamanList.length = 0;
+
+  // Hapus status rekaman dari localStorage
+  kataList.forEach((kata) => {
+    localStorage.removeItem(kata);
+  });
   alert("Proses upload selesai!");
 }
 
