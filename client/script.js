@@ -163,6 +163,7 @@ const container = document.getElementById("kata-container");
 const rekamanList = []; // Menyimpan semua rekaman sementara di browser
 let gambarInd = 0; //Index link gambar
 let userId = null; // Menyimpan userId dari server
+let jenis_sakit = null; // Menyimpan userId dari server
 
 kataList.forEach((kata) => {
   const div = document.createElement("div");
@@ -191,6 +192,7 @@ let audioChunks = [];
 let currentKata = "";
 let rekamActive = null;
 let stopActive = true;
+
 
 async function mulaiRekam(kata) {
   currentKata = kata;
@@ -222,10 +224,13 @@ async function mulaiRekam(kata) {
 
   mediaRecorder.onstop = () => {
     const blob = new Blob(audioChunks, { type: "audio/wav" });
+    const timestamp = Date.now();
+    const filename = `${userId}-${currentKata}-${Date.now()}.wav`;
+
     rekamanList.push({
       kata: currentKata,
       blob: blob,
-      filename: `${currentKata}-${Date.now()}.wav`,
+      filename: `${kata}-${userId}-${timestamp}.wav`,
     });
     audioChunks = [];
 
@@ -290,6 +295,11 @@ async function kirimSemua() {
       formData.append("audio", rekaman.blob, rekaman.filename);
       formData.append("user_id", userId);
       formData.append("filename", rekaman.filename);
+      formData.append("jenis_sakit", jenis_sakit); // ✅ Tambahkan ini
+      formData.append("kata", rekaman.kata); // ✅ Tambahkan ini
+
+      console.log("Jenis sakit (client):", jenis_sakit); // Debugging
+      console.log("Kata (client):", rekaman.kata);
 
       console.log("Uploading:", rekaman.filename); // Log filename
 
@@ -450,7 +460,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await res.json();
     document.getElementById("userId").textContent = data.userId;
     console.log("User ID:", data.userId);
+    console.log("Sakit:", data.jenis_sakit);
     userId = data.userId; // Simpan userId ke variabel global
+    jenis_sakit = data.jenis_sakit; // Simpan userId ke variabel global
   } catch (err) {
     console.error("Error:", err);
     document.getElementById("userId").textContent = "Terjadi kesalahan";

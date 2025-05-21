@@ -56,7 +56,9 @@ app.post("/check-user", (req, res) => {
 
       if (results.length > 0) {
         const user = results[0];
-        req.session.userId = user.id; // ⬅️ SIMPAN userId ke SESSION
+        req.session.userId = user.id;
+        req.session.jenis_sakit = user.jenis_sakit;
+        console.log("Session jenis_sakit disimpan:", req.session.jenis_sakit); // <-- cek di sini
         res.json({ exists: true });
       } else {
         res.json({ exists: false });
@@ -67,7 +69,11 @@ app.post("/check-user", (req, res) => {
 
 app.get("/get-user-id", (req, res) => {
   if (req.session.userId) {
-    res.json({ userId: req.session.userId });
+    console.log("Ambil dari session jenis_sakit:", req.session.jenis_sakit); // cek di sini
+    res.json({
+      userId: req.session.userId,
+      jenis_sakit: req.session.jenis_sakit,
+    });
   } else {
     res.status(401).json({ error: "Belum login" });
   }
@@ -111,20 +117,21 @@ const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
-
-// Config Multer
+// Simpan sementara ke folder uploads/temp
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDir);
+    const tempPath = path.join(__dirname, "uploads", "temp");
+    if (!fs.existsSync(tempPath)) fs.mkdirSync(tempPath, { recursive: true });
+    cb(null, tempPath);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, file.originalname);
   },
 });
 
 const upload = multer({ storage });
-// Endpoint Upload File
-// Endpoint Upload dengan logging
+
+// STEP 2: Endpoint upload dan pindahkan file
 app.post("/upload", upload.single("audio"), async (req, res) => {
   console.log("Received upload:", {
     file: req.file ? req.file.originalname : "No file",
@@ -132,25 +139,55 @@ app.post("/upload", upload.single("audio"), async (req, res) => {
   });
 
   try {
-    // Validasi input
+    // Validasi
     if (!req.file) throw new Error("File audio tidak ditemukan");
-    if (!req.body.user_id) throw new Error("user_id harus diisi");
+    const { user_id, filename, jenis_sakit, kata } = req.body;
+    if (!user_id || !filename || !jenis_sakit || !kata) {
+      throw new Error("user_id, filename, jenis_sakit, dan kata wajib diisi");
+    }
+
+    // Tentukan path tujuan
+
+    const finalDir = path.join(__dirname, "uploads", jenis_sakit, kata);
+    if (!fs.existsSync(finalDir)) {
+      fs.mkdirSync(finalDir, { recursive: true });
+    }
+
+    // Pindahkan file dari temp ke folder tujuan
+    const tempPath = req.file.path;
+    const finalPath = path.join(finalDir, req.file.originalname);
+    // Jika file sudah ada, hapus dulu
+    if (fs.existsSync(finalPath)) {
+      fs.unlinkSync(finalPath);
+    }
+
+    fs.renameSync(tempPath, finalPath);
 
     // Simpan ke database
     const [result] = await db
       .promise()
       .execute(
         "INSERT INTO user_recordings (user_id, filename) VALUES (?, ?)",
-        [req.body.user_id, req.body.filename]
+        [user_id, filename]
       );
 
     console.log("File saved to DB:", result);
-    res.json({ success: true, fileId: result.insertId });
+    res.json({
+      success: true,
+      fileId: result.insertId,
+      path: `uploads/${jenis_sakit}/${kata}/${filename}`,
+    });
+    console.log("Upload rekaman:", {
+      user_id: user_id,
+      filename: rekaman.filename,
+      jenis_sakit: jenis_sakit,
+      kata: kata, // pastikan ini sesuai kata TERKINI
+    });
   } catch (error) {
     console.error("Upload error:", error);
 
-    // Hapus file jika gagal
-    if (req.file?.path) {
+    // Hapus file temp jika gagal
+    if (req.file?.path && fs.existsSync(req.file.path)) {
       fs.unlinkSync(req.file.path);
     }
 
