@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2025 at 02:21 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jun 28, 2025 at 02:49 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,6 +53,7 @@ INSERT INTO `user_profiles` (`id`, `nama_lengkap`, `jenis_sakit`, `usia`, `jenis
 CREATE TABLE `user_recordings` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `kata` varchar(255) NOT NULL,
   `filename` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -79,6 +79,27 @@ app.get("/get-user-id", (req, res) => {
   }
 });
 
+// Endpoint cek kata
+app.get("/unrecorded-kata", async (req, res) => {
+  const userId = req.query.user_id;
+  if (!userId) {
+    return res.status(400).json({ error: "Parameter user_id wajib diisi" });
+  }
+
+  try {
+    const [rows] = await db
+      .promise()
+      .query("SELECT kata FROM user_recordings WHERE user_id = ?", [userId]);
+
+    const recordedKata = rows.map((row) => row.kata); // hanya kolom 'kata' yang diambil
+    res.json({ recordedKata });
+  } catch (err) {
+    console.error("Gagal mengambil data kata dari DB:", err);
+    res.status(500).json({ error: "Gagal mengambil data dari database" });
+  }
+});
+
+
 // Endpoint: Tambah user baru
 app.post("/register-user", (req, res) => {
   const { nama, jenis_sakit, usia, jenis_kelamin, bisa_membaca } = req.body;
@@ -167,8 +188,8 @@ app.post("/upload", upload.single("audio"), async (req, res) => {
     const [result] = await db
       .promise()
       .execute(
-        "INSERT INTO user_recordings (user_id, filename) VALUES (?, ?)",
-        [user_id, filename]
+        "INSERT INTO user_recordings (user_id, kata, filename) VALUES (?, ?, ?)",
+        [user_id, kata, filename]
       );
 
     console.log("File saved to DB:", result);
